@@ -1,0 +1,28 @@
+/* Colour palette */
+
+/*
+[orange,"#ff7f11"
+yellow,"#f0db4f",
+grey"#c0d6df",
+black"#323330"]*/
+
+
+#header {
+background-color:#323330;
+color: aliceblue
+}
+
+body {
+background-color:#f0db4f;
+}
+
+#menu {
+    background-color:#3f3f3e;
+    color: aliceblue;
+}
+
+#footer {
+    background-color:#3f3f3e;
+    color: aliceblue;
+}
+

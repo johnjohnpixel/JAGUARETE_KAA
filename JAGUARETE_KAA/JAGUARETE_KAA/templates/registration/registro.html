@@ -2,24 +2,28 @@
 
 {% block body %}
 
-<h2>Formulario de Registro</h2>
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {% for campo in form %}
-    <p>
-       {{ campo.label_tag}}<br>
-       {{ campo }}
-       {% if campo.help_text %} 
-       <small  style="color:grey">{{ campo.help_text }}</small>
-       {% endif %}
-       {% for error in campo.errors %}
-       <p style="color:red">{{ error }}</p>
-       {% endfor %}
-    </p>
-    {% endfor %}
-    <button type="submit">Confirmar Registro</button>
-</form>
 
-<p><a href="{% url 'login' %}">Volver</a></p>
+
+<div class="container d-flex align-items-center justify-content-center flex-column position-absolute top-50 start-50 translate-middle">    
+    <div class="col-10 d-flex flex-column d-inline-flex justify-content-center align-items-center">
+    <h2>Formulario de Registro</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for campo in form %}
+        <div class="py-2" >{{ campo.label_tag}}<br>
+            {{ campo }}
+            {% if campo.help_text %} 
+            <small  style="color:grey">{{ campo.help_text }}</small>
+            {% endif %}
+            {% for error in campo.errors %}
+            <p style="color:red">{{ error }}</p>
+            {% endfor %}
+            </div>
+        {% endfor %}
+        <button class="btn btn-secondary my-3" type="submit">Confirmar Registro</button>
+    </form>
+    <p><a href="{% url 'login' %}">Volver</a></p>
+    </div>
+</div>
 {% endblock %}

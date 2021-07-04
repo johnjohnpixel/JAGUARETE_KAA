@@ -20,5 +20,9 @@ from . import views
 app_name = 'miSitio'
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/', views.index, name="index"),
+    path('', views.index, name="index"),
+    path('carrito/', views.carrito, name="carrito"),
+    path('acerca_de/', views.acerca_de, name="acerca_de"),
+    path('producto/', views.producto, name="producto"),
+    path('resultado_busqueda/', views.resultado_busqueda, name="resultado_busqueda"),
 ]

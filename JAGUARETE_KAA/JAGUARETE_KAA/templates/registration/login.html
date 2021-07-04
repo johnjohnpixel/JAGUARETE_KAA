@@ -21,25 +21,27 @@
     {% endif %}
 
 {% endif %}
+<div class="container d-flex align-items-center justify-content-center flex-column position-absolute top-50 start-50 translate-middle">    
+    <div class="col-6 d-flex flex-column d-inline-flex justify-content-center align-items-center">
+        <form class="d-flex justify-content-center align-items-center flex-column" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="py-2">Usuario</div>
+            <div class="py-2">{{ form.username}}</div>
+            <div class="py-2">{{ form.password.label_tag }}</div>
+            <div class="py-2">{{ form.password }}</div>
+            <td></td>
+            <div class="py-4" ><input type="submit" value="ACCEDER" /></div>
+            <input type="hidden" name="next" value="{{next}}" />
+            <div class="py-2"><a href="{% url 'password_reset' %}">¿Olvidó su contraseña?</a></div>
+            <div class="py-2"><a href="{% url 'accounts:registro' %}">Registrarse</a></div>
 
-<form method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    <div>
-        <td>Usuario</td>
-        <td>{{ form.username}}</td>
+        </form>
     </div>
-    <div>
-        <td>{{ form.password.label_tag }}</td>
-        <td>{{ form.password }}</td>
-    </div>
-    <div>
-        <input type="submit" value="ACCEDER" />
-        <input type="hidden" name="next" value="{{next}}" />
-    </div>
-</form>
+</div>
+
+
 
 <!-- Asume que configuras la vista password_reset en tu URLconf -->
-<p><a href="{% url 'password_reset' %}">¿Olvidó su contraseña?</a></p>
-<p><a href="{% url 'USUARIOS:registrarse' %}">Registrarse</a></p>
+
 
 {% endblock %}
