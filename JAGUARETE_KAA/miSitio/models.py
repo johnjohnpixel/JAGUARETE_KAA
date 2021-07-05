@@ -15,8 +15,7 @@ class Categoria(models.Model):
 class Producto(models.Model):
     titulo = models.CharField(max_length=64)
     imagen = models.ImageField()
-    descripcion = models.ForeignKey(
-        Categoria, on_delete=models.CASCADE, related_name="descripcion_producto")
+    descripcion = models.CharField(max_length=180)
     precio = models.DecimalField(max_digits=64, decimal_places=2)
     categoria = models.ForeignKey(
         Categoria, on_delete=models.CASCADE, related_name="categoria")

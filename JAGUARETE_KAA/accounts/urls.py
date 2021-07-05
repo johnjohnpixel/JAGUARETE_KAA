@@ -9,4 +9,5 @@ from . import views
 app_name='accounts'
 urlpatterns = [
     path('', views.registrarse, name="registro"),
+    path('logout', views.logout, name='logout'),
 ]

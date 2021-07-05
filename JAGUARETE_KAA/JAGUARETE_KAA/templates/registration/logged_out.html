@@ -4,6 +4,6 @@
 
 <p>Has sido desconectado.</p>
 
-<a href="{% url 'login' %}">Click aqui para volver a acceder.</a>
+<a href="{% url 'login' %}?next={{request.path}}">Click aqui para volver a acceder.</a>
 
 {% endblock %}

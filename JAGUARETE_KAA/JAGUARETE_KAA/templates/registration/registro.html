@@ -4,7 +4,7 @@
 
 
 
-
+{% if not user.is_authenticated %}
 <div class="container d-flex align-items-center justify-content-center flex-column position-absolute top-50 start-50 translate-middle">    
     <div class="col-10 d-flex flex-column d-inline-flex justify-content-center align-items-center">
     <h2>Formulario de Registro</h2>
@@ -26,4 +26,14 @@
     <p><a href="{% url 'login' %}">Volver</a></p>
     </div>
 </div>
+{% else %}
+<div class="container">
+    <div class="row">
+        <div class="col-6 d-flex justify-content-center align-items-center flex-column position-absolute top-50 start-50 translate-middle">
+            <h1 class="py-3">Ya se encuentra registrado.</h1>
+            <p><a href="{% url 'miSitio:index' %}">Volver a Home</a></p>
+        </div>
+    </div>
+</div>
+{% endif %}
 {% endblock %}
