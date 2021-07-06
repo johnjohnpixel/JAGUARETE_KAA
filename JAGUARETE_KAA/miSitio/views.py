@@ -9,7 +9,10 @@ from .forms import FormProductoCRUD
 
 
 def index(request):
-    return render(request, "misitio/index.html")
+    productos = Producto.objects.all()
+    return render(request, "misitio/index.html",{
+        "productos": productos,
+    })
 
 def carrito(request):
     lista = Carrito.lista_productos
@@ -39,7 +42,7 @@ def producto(request,producto_id):
     descripcion = producto.descripcion
     precio = producto.precio 
     categoria = producto.categoria
-    return render (request, 'misitio/producto.html',{
+    return render(request, 'misitio/producto.html',{
     "producto" : producto,
     "files":Producto.objects.all(),
     "titulo": titulo,
@@ -47,7 +50,6 @@ def producto(request,producto_id):
     "descripcion": descripcion,
     "imagen": imagen,
     "categoria":categoria,
-    
     }
     )
 
