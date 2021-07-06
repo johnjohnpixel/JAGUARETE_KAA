@@ -52,7 +52,7 @@
                     <a class="btn btn-secondary"href="mailto:yaguaretekaa@yaguarete.com" target="_blank">CONTACTO</a>
                     {% if perms.miSitio %}
                     {% if perms.miSitio.add_producto %}
-                    <a class="btn btn-secondary"href="{% url 'miSitio:producto' %}">NUEVO PRODUCTO</a>
+                    <a class="btn btn-secondary"href="{% url 'miSitio:añadir_producto'%}">NUEVO PRODUCTO</a>
                     {% endif %}
                     {% else %}
                     {% endif %}
@@ -65,10 +65,10 @@
 
     {% endblock %}
     <footer>
-        <div id="footer" class="container fixed-bottom ">
-            <div class="row d-flex align-items-end  justify-content-center">
-                <div class="col-10">
-                    <p> Copyright @ 2021 JAGUARETE KAA S.A Todos los derechos Reservados / Alejandro Jonathan Messina</p></div>
+        <div id="footer" class="container fixed-bottom d-flex align-items-center justify-content-center">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    Copyright @ 2021 JAGUARETE KAA S.A Todos los derechos Reservados / Alejandro Jonathan Messina</div>
             </div>
         </div>
     </footer>

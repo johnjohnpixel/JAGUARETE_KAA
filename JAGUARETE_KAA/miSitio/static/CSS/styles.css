@@ -16,6 +16,7 @@ body {
 background-color:#f0db4f;
 }
 
+
 #menu {
     background-color:#3f3f3e;
     color: aliceblue;
@@ -24,5 +25,11 @@ background-color:#f0db4f;
 #footer {
     background-color:#3f3f3e;
     color: aliceblue;
+    height: 6vh;
+
 }
 
+.p_footer{
+    text-align: center;
+    line-height: center;
+}

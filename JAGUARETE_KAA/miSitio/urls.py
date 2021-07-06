@@ -16,6 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 app_name = 'miSitio'
 urlpatterns = [
@@ -23,8 +27,9 @@ urlpatterns = [
     path('', views.index, name="index"),
     path('carrito/', views.carrito, name="carrito"),
     path('acerca_de/', views.acerca_de, name="acerca_de"),
-    path('producto/', views.producto, name="producto"),
-    path('producto/<int:producto_id>/', views.ver_producto, name="ver_producto"),
+    path('producto/<int:producto_id>/', views.producto, name="ver_producto"),
+    path('producto/añadir_producto/', views.añadir_producto, name="añadir_producto"),
     path('producto/<int:producto_id>/editar_producto/', views.editar_producto, name="editar_producto"),
     path('resultado_busqueda/', views.resultado_busqueda, name="resultado_busqueda"),
 ]
+

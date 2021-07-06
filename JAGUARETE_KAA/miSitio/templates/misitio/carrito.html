@@ -1,7 +1,7 @@
 {% extends 'misitio/layout.html' %}
 
 {% block content %}
-<div class="container">
+<div class="container mb-5">
     <div class="row">
         <div class="col-12">
             <h1>CARRITO</h1>
@@ -11,14 +11,10 @@
         <div class="col-12">
             <h2>NOMBRE DE USUARIO</h2>
             <ol>
-                <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+                {% for elemento in lista.all %}
+                <li>{{elemento}}</li>
                 <button class="btn">X</button>
-                <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</li>
-                <button class="btn">X</button>
-                <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</li>
-                <button class="btn">X</button>
-                <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</li>
-                <button class="btn">X</button>
+                {% endfor %}
             </ol>
         </div>
     </div>

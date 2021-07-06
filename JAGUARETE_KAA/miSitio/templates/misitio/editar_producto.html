@@ -1,0 +1,34 @@
+{% extends 'misitio/layout.html' %}
+{% load templatetags %}
+
+{% block content %}
+{% if request.user|has_group:"Moderadores" %}
+<form action="{% url 'miSitio:editar_producto' un_producto.id %}" method="post">
+{% csrf_token %}
+<div class="container mb-5">
+    <div class="row py-4">
+        <div class="col-12 py-3">
+            <h1>{{un_producto.titulo}}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <img src="{{un_producto.imagen.url}}" alt=".">
+        </div>
+        <div class="col-6">
+            <h2>{{un_producto.categoria}}</h2>
+            <P>{{un_producto.descripcion}}</P>
+            <div class="col-6">
+                <span>Precio:{{un_producto.precio}}</span>
+            </div>
+            <div class="col-6">
+                <input class="btn btn-secondary" type="submit" value="EDITAR">
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+{% else %}
+<p>No tiene permiso de ver este contenido</p>
+{% endif %}
+{% endblock %}
