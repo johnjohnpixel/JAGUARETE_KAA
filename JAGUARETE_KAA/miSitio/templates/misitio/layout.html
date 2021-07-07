@@ -43,9 +43,9 @@
                     <div class="btn-group">
                         <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">CATEGORIAS</button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="">Hola</a></li>
-                            <li><a class="dropdown-item"  href="">Adios</a></li>
-                            <li><a class="dropdown-item"  href="">Hasta Luego</a></li>
+                            {% for categoria in categorias %}
+                            <li class ="categoria_label"><a class="dropdown-item categoria_label" href="{% url 'miSitio:resultado_busqueda'   %}?q={{ categoria | urlencode}} ">{{categoria|cut:"'"|cut:","|cut:"("|cut:")"}}</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                     <a class="btn btn-secondary"href="{% url 'miSitio:acerca_de' %}">ACERCA DE...</a>
@@ -58,7 +58,9 @@
                     {% endif %}
                 </div>
                 <div class="col-2">
-                    <p>busqueda</p>
+                    <form action="{% url 'miSitio:resultado_busqueda' %}" method="get">
+                        <input name="q" type="text" placeholder="Search...">
+                    </form>
                 </div>
     </nav>
     {% block content %}

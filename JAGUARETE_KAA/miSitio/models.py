@@ -11,6 +11,8 @@ class Categoria(models.Model):
     def __str__(self):
         return f"Categoria #{self.id}: {self.descripcion}."
 
+    def __repr__(self):
+        return "\n".join([self.descripcion])
 
 class Producto(models.Model):
     titulo = models.CharField(max_length=64)
@@ -19,7 +21,8 @@ class Producto(models.Model):
     precio = models.DecimalField(max_digits=64, decimal_places=2)
     categoria = models.ForeignKey(
         Categoria, on_delete=models.CASCADE, related_name="categoria")
-
+    class Meta:
+      verbose_name_plural = "productos"
     def __str__(self):
         return f'El Producto #{self.id}, {self.titulo}, se describe como {self.descripcion}, pertenece a la categoria {self.categoria} y tiene un precio de ${self.precio}.'
 

@@ -2,6 +2,13 @@
 
 {% block content %}
 <div class="container mb-5">
-
+    <h1>Search Results</h1>
+    <ul>
+        {% for producto in productos %}
+        <li>
+            {{ producto.titulo }}, {{ producto.descripcion }}.
+        </li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}

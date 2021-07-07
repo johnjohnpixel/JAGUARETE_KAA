@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django import forms
@@ -10,8 +11,10 @@ from .forms import FormProductoCRUD
 
 def index(request):
     productos = Producto.objects.all()
+    categoriax = Categoria.objects.all()
     return render(request, "misitio/index.html",{
         "productos": productos,
+        "categoriax": categoriax,
     })
 
 def carrito(request):
@@ -54,7 +57,15 @@ def producto(request,producto_id):
     )
 
 def resultado_busqueda(request):
-    return render(request, "misitio/resultado_busqueda.html")
+    productos = Producto.objects.all()
+    query = request.GET.get("q")
+    if query and query != '':
+        productos = Producto.objects.filter(Q(titulo__icontains=query) | Q(categoria__descripcion__icontains=query)) 
+    else:
+        productos = Producto.objects.all()
+    return render(request, "misitio/resultado_busqueda.html",{
+        "productos": productos,
+    })
 
 @login_required
 def añadir_producto(request):
