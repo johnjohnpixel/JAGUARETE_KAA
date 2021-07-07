@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.http import HttpResponse, HttpResponseRedirect
@@ -53,6 +53,7 @@ def producto(request,producto_id):
     "descripcion": descripcion,
     "imagen": imagen,
     "categoria":categoria,
+    "producto_id":producto_id
     }
     )
 
@@ -84,7 +85,7 @@ def añadir_producto(request):
 def editar_producto(request,producto_id):
     un_producto = get_object_or_404(Producto,id=producto_id)
     if request.method=="POST":
-        form= FormProductoCRUD(request.post,instance=un_producto)
+        form= FormProductoCRUD(request.POST, request.FILES,instance=un_producto)
         if form.is_valid():
             form.save()
             return render(request,"misitio/editar_producto.html",{
@@ -93,18 +94,14 @@ def editar_producto(request,producto_id):
             })
     else:
         form = FormProductoCRUD(instance=un_producto)
-        # titulo = form['titulo']
-        # imagen = form['imagen']
-        # descripcion = form['descripcion']
-        # precio = form['precio']
-        # categoria = form['categoria']
         return render(request,"misitio/editar_producto.html",{
             "un_producto":un_producto,
-            "form":form,
-            # "titulo": titulo,
-            # "precio": precio,
-            # "descripcion": descripcion,
-            # "imagen": imagen,
-            # "categoria":categoria,
-            
+            "formset":form,
         })
+
+def borrar_producto(request,producto_id):
+    un_producto=get_object_or_404(Producto, id = producto_id)
+    if request.method == 'POST':        
+        un_producto.delete()                     
+
+    return render(request, 'index.html', {'un_producto': un_producto})

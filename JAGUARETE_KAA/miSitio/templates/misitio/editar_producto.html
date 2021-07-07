@@ -3,32 +3,36 @@
 
 {% block content %}
 {% if request.user|has_group:"Moderadores" %}
-<form action="{% url 'miSitio:editar_producto' un_producto.id %}" method="post">
+<form enctype="multipart/form-data" action="{% url 'miSitio:editar_producto' un_producto.id %}" method="post">
 {% csrf_token %}
 <div class="container mb-5">
     <div class="row py-4">
         <div class="col-12 py-3">
-            <h1>{{un_producto.titulo}}</h1>
+            <h1>Titulo del producto: {{formset.titulo}}</h1>
         </div>
     </div>
     <div class="row">
         <div class="col-6">
-            <img src="{{un_producto.imagen.url}}" alt=".">
+            {{formset.imagen}}
         </div>
         <div class="col-6">
-            <h2>{{un_producto.categoria}}</h2>
-            <P>{{un_producto.descripcion}}</P>
+            <p>Categoria:{{formset.categoria}}</p>
+            <P>Descripcion:{{formset.descripcion}}</P>
             <div class="col-6">
-                <span>Precio:{{un_producto.precio}}</span>
+                <span>Precio:{{formset.precio}}</span>
             </div>
             <div class="col-6">
-                <input class="btn btn-secondary" type="submit" value="EDITAR">
+                <input class="btn btn-secondary" type="submit" value="EDITAR" method="post" href="{% url 'miSitio:producto' un_producto.id %}?next={{request.path}}"">
             </div>
         </div>
     </div>
 </div>
 </form>
+
 {% else %}
+
 <p>No tiene permiso de ver este contenido</p>
+
 {% endif %}
+
 {% endblock %}

@@ -23,8 +23,9 @@
                 <div class="col-3 ">
                     <span>Precio: {{precio}}</span>
                 </div>
-                <div class="col-3">
-                    <input class="btn btn-secondary" type="submit" value="CREAR">
+                <div class="col-6">
+                    <a class="btn btn-secondary"href="{% url 'miSitio:editar_producto' producto_id %}">Editar</a>
+                    <input class="btn btn-secondary" type="submit" value="Añadir al Carrito">
                 </div>
             </div>
         </div>
