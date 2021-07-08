@@ -1,11 +1,11 @@
-{% extends "registration/layout.html" %}
+{% extends "miSitio/layout.html" %}
 
-{% block body %}
+{% block content %}
 
 
 
 {% if not user.is_authenticated %}
-<div class="container d-flex align-items-center justify-content-center flex-column position-absolute top-50 start-50 translate-middle">    
+<div class="container d-flex align-items-center justify-content-center flex-column mt-4 mb-5">    
     <div class="col-10 d-flex flex-column d-inline-flex justify-content-center align-items-center">
     <h2>Formulario de Registro</h2>
     <form action="" method="POST">

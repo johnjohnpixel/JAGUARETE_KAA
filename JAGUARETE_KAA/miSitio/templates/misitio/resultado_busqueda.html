@@ -1,14 +1,19 @@
 {% extends 'misitio/layout.html' %}
 
 {% block content %}
-<div class="container mb-5">
-    <h1>Search Results</h1>
-    <ul>
-        {% for producto in productos %}
-        <li>
-            {{ producto.titulo }}, {{ producto.descripcion }}.
-        </li>
-        {% endfor %}
-    </ul>
+<div class="container mb-5 mt-5">
+    <div class="row">
+        <div class="col-10">
+            <h1>Resultados:</h1>
+            <ul>
+                {% for producto in productos %}
+                    <br>
+                    <li><a class="etiqueta_home_lista " href="{% url 'miSitio:editar_producto' producto.id %}">{{producto.titulo}}: {{producto.descripcion}}.</a></li>
+                    <br>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
 </div>
 {% endblock %}

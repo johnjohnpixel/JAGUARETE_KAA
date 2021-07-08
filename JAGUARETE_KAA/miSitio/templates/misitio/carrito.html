@@ -1,28 +1,44 @@
 {% extends 'misitio/layout.html' %}
 
+{% load templatetags %}
+
+{% load cart_tag %}
+
+Total Length :: {{request.session.cart|length}}
+
+
 {% block content %}
-<div class="container mb-5">
+<div class="container mb-5 mt-4">
     <div class="row">
         <div class="col-12">
-            <h1>CARRITO</h1>
+            <h1>Carrito:</h1>
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
-            <h2>NOMBRE DE USUARIO</h2>
-            <ol>
-                {% for elemento in lista.all %}
-                <li>{{elemento}}</li>
-                <button class="btn">X</button>
-                {% endfor %}
-            </ol>
+        <div class="col-8 col-md-12 d-flex justify-content-center align-items-left flex-column mb-4 mt-3">
+            {% for key,value in request.session.cart.items %}
+            <div class="col-12 d-flex flex-column h4">
+                <p><span class="text-primary">Producto:</span> {{value.titulo}}</p> 
+                <p><span class="text-primary">Precio:</span> {{value.precio}}, </p> 
+                <p><span class="text-primary">Cantidad:</span> {{value.quantity}}.</p> 
+            </div>
+            <div></div>
+            <div></div>
+            <div class="mb-3">Total Items: {{ value.precio|multiply:value.quantity }}.</div>
+
+            {% endfor %}
+            <hr class="border border-1 border-dark">
+            <span class="mt-3 h2 text-dark">Total Carrito: {{cart_total_amount}}</span>
+            <hr class="border border-1 border-dark">
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
-            <button class="btn">VACIAR CARRITO</button>
-            <button class="btn">FINALIZAR COMPRA</button>
+        <div class="col-12 mb-3">
+            <a class="btn btn-danger" href="{% url 'miSitio:cart_clear' %}">VACIAR CARRITO</a>
+            <button class="btn btn-success">FINALIZAR COMPRA</button>
         </div>
     </div>
 </div>
 {% endblock %}
+
+

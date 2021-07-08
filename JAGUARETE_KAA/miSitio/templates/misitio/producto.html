@@ -5,27 +5,28 @@
 {% block content %}
 <div class="container mb-5">
     <div class="row my-4">
-        <div class="col-12 my-3">
-            <h1>{{titulo}}</h1>
+        <div class="col-12 my-2 justify-content-center align-items-center justify-content-md-start  d-flex">
+            <h1 class="">{{titulo}}</h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col-6">
+    <div class="row justify-content-center align-items-center align-items-md-start mb-3">
+        <div class="col-md-6 col-10">
             {% if producto.imagen %}
-            <img class="img-fluid h-80 " src="{{imagen.url}}" alt="imagen">
+            <img class="img-fluid h-80 w-80 border border-dark mb-3" src="{{imagen.url}}" alt="imagen">
         {% endif %}
-
         </div>
-        <div class="col-6 flex-no-wrap">
-            <h2>{{categoria}}</h2>
-            <P>{{descripcion}}</P>
-            <div class="col-12 d-flex flex-row justify-content-between">
-                <div class="col-3 ">
-                    <span>Precio: {{precio}}</span>
+        <div class="col-md-6 col-10 flex-no-wrap justify-content-center align-items-center">
+            <h2 class="py-3">{{categoria}}</h2>
+            <p class="h5">{{descripcion}}.</p>
+            <div class="col-12 d-flex flex-row justify-content-between align-items-center py-4">
+                <div class="col-3 py-3 py-md-0 ">
+                    <span class="h4 py-5 py-md-3">Precio: <br> {{precio}}</span>
                 </div>
                 <div class="col-6">
+                    {% if request.user|has_group:"Moderadores" %}
                     <a class="btn btn-secondary"href="{% url 'miSitio:editar_producto' producto_id %}">Editar</a>
-                    <input class="btn btn-secondary" type="submit" value="Añadir al Carrito">
+                    {% endif %}
+                    <a class="btn btn-success" href="{% url 'miSitio:cart_add' producto_id %}">Añadir al Carrito</a>
                 </div>
             </div>
         </div>

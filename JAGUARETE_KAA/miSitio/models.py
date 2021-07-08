@@ -22,7 +22,7 @@ class Producto(models.Model):
     categoria = models.ForeignKey(
         Categoria, on_delete=models.CASCADE, related_name="categoria")
     class Meta:
-      verbose_name_plural = "productos"
+        verbose_name_plural = "productos"
     def __str__(self):
         return f'El Producto #{self.id}, {self.titulo}, se describe como {self.descripcion}, pertenece a la categoria {self.categoria} y tiene un precio de ${self.precio}.'
 

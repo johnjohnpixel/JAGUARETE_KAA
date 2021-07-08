@@ -1,6 +1,6 @@
-{% extends "registration/layout.html" %}
+{% extends "miSitio/layout.html" %}
 
-{% block body %}
+{% block content %}
 
 {% if form.errors %}
 
@@ -21,7 +21,7 @@
     {% endif %}
 
 {% endif %}
-<div class="container d-flex align-items-center justify-content-center flex-column position-absolute top-50 start-50 translate-middle">    
+<div class="container mt-3 text-dark d-flex align-items-center justify-content-center flex-column ">    
     <div class="col-6 d-flex flex-column d-inline-flex justify-content-center align-items-center">
         <form class="d-flex justify-content-center align-items-center flex-column" method="post" action="{% url 'login' %}">
             {% csrf_token %}
@@ -34,7 +34,6 @@
             <input type="hidden" name="next" value="{{next}}" />
             <div class="py-2"><a href="{% url 'password_reset' %}">¿Olvidó su contraseña?</a></div>
             <div class="py-2"><a href="{% url 'accounts:registro' %}">Registrarse</a></div>
-
         </form>
     </div>
 </div>

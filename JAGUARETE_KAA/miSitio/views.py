@@ -6,6 +6,7 @@ from django.urls import reverse
 from django import forms
 from .models import Categoria, Producto, Carrito
 from .forms import FormProductoCRUD
+from cart.cart import Cart
 # Create your views here.
 
 
@@ -23,17 +24,15 @@ def carrito(request):
         "lista" : lista,
     })
     
+# lista_productos = []
 
-lista_productos = []
-
-@login_required
-def añadir_a_carrito(request,producto_id):
-    producto = get_object_or_404(Producto, pk=producto_id)
-    carrito,created = Carrito.objects.get_or_create(user=request.user, active=True)
-    Carrito.añadir_a_carrito(producto_id)
-    return render(request, 'misitio/carrito.html')
+# @login_required
+# def añadir_a_carrito(request,producto_id):
+#     producto = get_object_or_404(Producto, pk=producto_id)
+#     carrito,created = Carrito.objects.get_or_create(user=request.user, active=True)
+#     Carrito.añadir_a_carrito(producto_id)
+#     return render(request, 'misitio/carrito.html')
     
-
 
 def acerca_de(request):
     return render(request, "misitio/acerca_de.html")
@@ -105,3 +104,48 @@ def borrar_producto(request,producto_id):
         un_producto.delete()                     
 
     return render(request, 'index.html', {'un_producto': un_producto})
+
+
+
+@login_required(login_url="/users/login")
+def cart_add(request, producto_id):
+    cart = Cart(request)
+    product = Producto.objects.get(id=producto_id)
+    cart.add(product=product)
+    return redirect("/miSitio")
+
+
+@login_required(login_url="/users/login")
+def item_clear(request, producto_id):
+    cart = Cart(request)
+    product = Producto.objects.get(id=producto_id)
+    cart.remove(product)
+    return redirect("/miSitio/carrito")
+
+
+@login_required(login_url="/users/login")
+def item_increment(request, id):
+    cart = Cart(request)
+    product = Producto.objects.get(id=id)
+    cart.add(product=product)
+    return redirect("cart_detail")
+
+
+@login_required(login_url="/users/login")
+def item_decrement(request, id):
+    cart = Cart(request)
+    product = Producto.objects.get(id=id)
+    cart.decrement(product=product)
+    return redirect("cart_detail")
+
+
+@login_required(login_url="/users/login")
+def cart_clear(request):
+    cart = Cart(request)
+    cart.clear()
+    return redirect("/miSitio/carrito")
+
+
+@login_required(login_url="/users/login")
+def cart_detail(request):
+    return render(request, 'cart/cart_detail.html')

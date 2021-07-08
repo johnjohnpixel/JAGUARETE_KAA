@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'cart',
     'accounts',
     'miSitio',
     'django.contrib.admin',
@@ -66,6 +67,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'miSitio.context_processors.add_variable_to_context',
+                'cart.context_processor.cart_total_amount',
             ],
             'libraries':{
                     'templatetags':  'miSitio.templatetags.has_group',
@@ -135,6 +137,10 @@ LOGIN_REDIRECT_URL = '/miSitio'
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+CART_SESSION_ID = 'cart'
+
 STATIC_URL= "/static/"
+
 MEDIA_ROOT= os.path.join(BASE_DIR, "media")
+
 MEDIA_URL="/media/"

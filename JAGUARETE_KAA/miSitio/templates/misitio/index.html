@@ -1,27 +1,56 @@
 {% extends 'misitio/layout.html' %}
+{% load templatetags %}
 
 {% block content %}
+
 <div class="container mb-5">
-    <div class="row justify-content-center align-items-center my-3">
+    <div class="row contenedor_cuadros justify-content-center align-items-center my-5">
         {% for producto in productos|slice:":3" %}
-        <div class="cuadro_producto col-3 vw-10 vh-10 d-flex flex-column justify-content-center align-items-center">
+        <div class="cuadro_producto col-8 py-3 py-md-0 col-md-3 vw-10 vh-10 d-flex flex-column justify-content-center align-items-center">
             <h3>{{producto.titulo}}</h3>
-            <img class="img-fluid w-50" src="{{producto.imagen.url}}" alt="imagen">
+            <img class="img-fluid w-60 rounded-circle border border-warning border-3" src="{{producto.imagen.url}}" alt="imagen">
+            {% if request.user|has_group:"Moderadores" %}
+            <a class="btn btn-secondary"href="{% url 'miSitio:editar_producto' producto.id %}">Ver Detalle</a>
+            {%  else %}
             <a class="btn btn-secondary"href="{% url 'miSitio:producto' producto.id %}">Ver Detalle</a>
+            {%  endif %}
         </div>
-        {%endfor %}
+        {% endfor %}
     </div>
+
+
+
+    {% if request.user|has_group:"Moderadores" %}
     <div class="row justify-content-center align-items-center d-flex  my-3">
-        <div class="col-12 d-flex justify-content-center align-items-center">MAS PRODUCTOS</div>
+        <div class="mas_productos col-12 d-flex justify-content-center align-items-center">MAS PRODUCTOS</div>
+        <hr class="border border-1 border-dark">
         {% for producto in productos|slice:"3:10" %}
     </div>
     <div class="row justify-content-start align-items-center d-flex  my-3">
         <div class="col-12 vw-10 vh-10 d-flex flex-row"> 
         <ul>
+            <li><a class="etiqueta_home_lista" href="{% url 'miSitio:editar_producto' producto.id %}">{{producto.titulo}}: {{producto.descripcion}}.</a></li>
+        </ul>
+    </div>
+        {% endfor %}
+        <hr class="border border-1 border-dark">
+    </div>
+    {%  else %}
+
+    <div class="row justify-content-center align-items-center d-flex  my-3">
+        <div class="mas_productos col-12 d-flex justify-content-center align-items-center">MAS PRODUCTOS</div>
+        <hr class="border border-1 border-dark">
+        {% for producto in productos|slice:"3:10" %} 
+    </div>
+    <div class="row justify-content-start align-items-center d-flex  my-3">
+        <div class="col-12   vw-10 vh-10 d-flex flex-row"> 
+        <ul>
             <li><a class="etiqueta_home_lista"href="{% url 'miSitio:producto' producto.id %}">{{producto.titulo}}: {{producto.descripcion}}.</a></li>
         </ul>
     </div>
-        {%endfor %}
+        {% endfor %}
+        <hr class="border border-1 border-dark">
     </div>
+    {%  endif %}
 </div>
 {% endblock %}
