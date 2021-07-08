@@ -31,7 +31,7 @@
                 {% if user.is_authenticated %}
                 <div class="col-4 px-3 d-flex justify-content-center align-items-center">
                         <a class="btn btn-info mx-1 mx-md-1"href="{% url 'miSitio:carrito' %}">CARRITO</a>
-                        <a class="btn btn-danger mx-1 mx-md-1"href="{% url 'logout' %}?next={{request.path}}">LOGOUT</a>
+                        <a class="btn btn-danger mx-1 mx-md-1"href="{% url 'logout' %}">LOGOUT</a>
                 </div>
                 {% endif %}
             </div>

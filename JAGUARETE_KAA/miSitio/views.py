@@ -107,7 +107,7 @@ def borrar_producto(request,producto_id):
 
 
 
-@login_required(login_url="/users/login")
+@login_required
 def cart_add(request, producto_id):
     cart = Cart(request)
     product = Producto.objects.get(id=producto_id)
@@ -131,7 +131,7 @@ def item_increment(request, id):
     return redirect("cart_detail")
 
 
-@login_required(login_url="/users/login")
+@login_required
 def item_decrement(request, id):
     cart = Cart(request)
     product = Producto.objects.get(id=id)

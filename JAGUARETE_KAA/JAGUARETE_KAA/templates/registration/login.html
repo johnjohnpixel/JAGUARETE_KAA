@@ -4,6 +4,16 @@
 
 {% if form.errors %}
 
+<div class="container">
+    <div class="row">
+        <div class="col 10 mt-4">
+            <p class="h3 mb-4">Has sido desconectado.</p>
+
+            <a href="{% url 'login' %}?next={{request.path}}">Click aqui para volver a acceder.</a>
+
+        </div>
+    </div>
+</div>
 <p>El usuario y la clave no coinciden, por favor intente nuevamente.</p>
 
 {% endif %}
@@ -12,11 +22,24 @@
 
     {% if user.is_authenticated %}
 
-    <p>Tu cuenta no tiene acceso a esta página. Para proceder, por favor inicie sesión con una cuenta que tenga acceso.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col 10 mt-4">
+                <p>Tu cuenta no tiene acceso a esta página. Para proceder, por favor inicie sesión con una cuenta que tenga acceso.</p>
+            </div>
+        </div>
+    </div>
 
     {% else %}
 
-    <p>Inicie sesión para ver esta página.</p>
+    <div class="container">
+        <div class="row">
+            <div class="col 10 mt-4 d-flex justify-content-center align-items-center">
+                <p>Inicie sesión para ver esta página.</p>
+            </div>
+        </div>
+    </div>
+
 
     {% endif %}
 
