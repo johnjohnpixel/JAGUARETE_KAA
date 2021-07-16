@@ -1,4 +1,5 @@
 {% extends 'misitio/layout.html' %}
+{% load templatetags %}
 
 {% block content %}
 <div class="container mb-5 mt-5">
@@ -8,10 +9,19 @@
             <ul>
                 {% for producto in productos %}
                     <br>
+                    <li><a class="etiqueta_home_lista " href="{% url 'miSitio:producto' producto.id %}">{{producto.titulo}}: {{producto.descripcion}}.</a></li>
+                    <br>
+                {% endfor %}
+            </ul>
+            {% if request.user|has_group:"Moderadores" %}
+            <ul>
+                {% for producto in productos %}
+                    <br>
                     <li><a class="etiqueta_home_lista " href="{% url 'miSitio:editar_producto' producto.id %}">{{producto.titulo}}: {{producto.descripcion}}.</a></li>
                     <br>
                 {% endfor %}
             </ul>
+            {% endif %}
         </div>
     </div>
 
